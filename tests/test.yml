@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+  force_handlers: yes
+  roles:
+    - apex-up

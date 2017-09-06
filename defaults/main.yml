@@ -1,0 +1,5 @@
+---
+# defaults file for apex-up
+up_version: 0.2.3
+up_dir: ~/bin/
+up_tmp_dir: /tmp/

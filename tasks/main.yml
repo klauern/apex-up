@@ -1,0 +1,36 @@
+---
+# tasks file for apex-up
+# - name: get current version of 'up'
+#   shell: "{{up_dir}}/up --version"
+#   register: up_version
+# - name: download available releases
+#   get_url:
+#     url=https://api.github.com/repos/apex/up/releases
+#   register: up_releases
+# - name: identify whether to update
+#   set_fact:
+#     up_update: yes
+- name: create tempdir
+  tempfile:
+    path={{up_tmp_dir}}
+    prefix=ansible-up.
+    state=directory
+  register: up_directory
+  notify: clean up tempdir
+- name: download up version
+  get_url:
+    url=https://github.com/apex/up/releases/download/v{{up_version}}/up_{{up_version}}_linux_amd64.tar.gz
+    dest={{up_directory.path}}/
+- name: unarchive up
+  unarchive:
+    remote_src=yes
+    src={{up_directory.path}}/up_{{up_version}}_linux_amd64.tar.gz
+    dest={{up_directory.path}}
+- name: move 'up' to {{up_dir}}
+  file:
+    src={{up_directory.path}}/up
+    dest={{up_dir}}/up
+- name: verify 'up' is working
+  command: "{{up_dir}}/up --version"
+  register: up_version_output
+  failed_when: up_version_output.stderr != up_version

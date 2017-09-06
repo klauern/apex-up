@@ -1,0 +1,6 @@
+---
+# handlers file for apex-up
+- name: clean up tempdir
+  file:
+    path={{up_directory.path}}
+    state=absent
