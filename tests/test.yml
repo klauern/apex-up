@@ -1,5 +1,4 @@
 ---
 - hosts: localhost
-  force_handlers: yes
   roles:
-    - apex-up
+  - klauern.apex-up
