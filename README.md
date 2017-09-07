@@ -1,7 +1,7 @@
 Apex 'Up' Installation Role
 =========
 
-This is a simple role to install ['up'][https://github.com/apex/up] in your ~/bin.  It doesn't do a whole heck of a lot other than that, but it does make upgrading
+This is a simple role to install ['up'](https://github.com/apex/up) in your ~/bin.  It doesn't do a whole heck of a lot other than that, but it does make upgrading
 easy!
 
 Role Variables
